@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics Fun TV - Home Experiments!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red: #FF0000;
+            --dark-red: #CC0000;
+            --orange: #FF6B00;
+            --yellow: #FFD700;
+            --blue: #2196F3;
+            --purple: #9C27B0;
+            --green: #4CAF50;
+            --dark: #0F0F0F;
+            --gray: #3C3C3C;
+            --light-gray: #F9F9F9;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--dark);
+            color: white;
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--dark);
+            padding: 15px 40px;
+            border-bottom: 1px solid var(--gray);
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--red);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+
+        .logo-text {
+            color: white;
+        }
+
+        .logo-text span {
+            color: var(--red);
+        }
+
+        .tagline {
+            color: #aaa;
+            font-size: 0.9rem;
+            margin-left: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 40px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--purple), var(--blue));
+            border-radius: 20px;
+            padding: 50px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        .hero h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .video-card {
+            background: var(--gray);
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .video-thumbnail::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.3);
+        }
+
+        .play-button {
+            width: 70px;
+            height: 70px;
+            background: rgba(255,0,0,0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 10;
+            transition: transform 0.3s ease;
+        }
+
+        .video-card:hover .play-button {
+            transform: scale(1.1);
+            background: var(--red);
+        }
+
+        .play-button::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 20px solid white;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            margin-left: 5px;
+        }
+
+        .thumbnail-icon {
+            position: absolute;
+            font-size: 6rem;
+            opacity: 0.3;
+            z-index: 1;
+        }
+
+        .duration {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.8);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            z-index: 10;
+        }
+
+        .video-info {
+            padding: 20px;
+        }
+
+        .video-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: white;
+            line-height: 1.3;
+        }
+
+        .video-meta {
+            display: flex;
+            gap: 15px;
+            color: #aaa;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .difficulty {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 5px;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .difficulty.easy {
+            background: var(--green);
+            color: white;
+        }
+
+        .difficulty.medium {
+            background: var(--orange);
+            color: white;
+        }
+
+        .video-description {
+            color: #ccc;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        /* Modal/Video Player Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .modal.active {
+            display: block;
+        }
+
+        .modal-content {
+            max-width: 1200px;
+            margin: 40px auto;
+            background: var(--gray);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            z-index: 1001;
+        }
+
+        .close-modal:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .video-player {
+            width: 100%;
+            height: 500px;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #666;
+        }
+
+        .video-details {
+            padding: 30px;
+        }
+
+        .video-details h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .materials-section, .steps-section, .science-section {
+            margin-top: 30px;
+            padding: 25px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            border-left: 4px solid var(--blue);
+        }
+
+        .science-section {
+            border-left-color: var(--purple);
+        }
+
+        .materials-section h3, .steps-section h3, .science-section h3 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--yellow);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .materials-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .material-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+        }
+
+        .material-icon {
+            font-size: 1.5rem;
+        }
+
+        .steps-list {
+            counter-reset: step-counter;
+            list-style: none;
+        }
+
+        .step-item {
+            counter-increment: step-counter;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            position: relative;
+            padding-left: 70px;
+        }
+
+        .step-item::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            width: 35px;
+            height: 35px;
+            background: var(--red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .step-title {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: white;
+        }
+
+        .step-description {
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .warning-box {
+            background: rgba(255, 152, 0, 0.2);
+            border-left: 4px solid var(--orange);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .warning-box::before {
+            content: '⚠️ ';
+            font-size: 1.2rem;
+        }
+
+        .fun-fact {
+            background: linear-gradient(135deg, var(--green), #2E7D32);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .fun-fact::before {
+            content: '💡 Fun Fact: ';
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .videos-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .video-player {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <div class="logo-icon">🔬</div>
+            <div class="logo-text">Physics<span>FunTV</span></div>
+        </div>
+        <div class="tagline">🎬 Awesome experiments you can do at home!</div>
+    </header>
+
+    <div class="container">
+        <div class="hero">
+            <h1>🚀 Try These Cool Physics Experiments at Home! 🧪</h1>
+            <p>Easy experiments with stuff you already have around the house</p>
+        </div>
+
+        <div class="videos-grid">
+            <!-- Video 1: Egg Drop -->
+            <div class="video-card" onclick="openVideo('eggDrop')">
+                <div class="video-thumbnail" style="background: linear-gradient(135deg, #FF6B6B, #FF8E53);">
+                    <div class="thumbnail-icon">🥚</div>
+                    <div class="play-button"></div>
+                    <div class="duration">8:30</div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Egg Drop Challenge - Don't Break the Egg!</h3>
+                    <div class="video-meta">
+                        <span class="difficulty easy">EASY</span>
+                        <span>⏱️ 15 min</span>
+                    </div>
+                    <p class="video-description">Drop an egg from high up without breaking it! Learn about gravity, air resistance, and how to protect things from impact.</p>
+                </div>
+            </div>
+
+            <!-- Video 2: Volcano -->
+            <div class="video-card" onclick="openVideo('volcano')">
+                <div class="video-thumbnail" style="background: linear-gradient(135deg, #F093FB, #F5576C);">
+                    <div class="thumbnail-icon">🌋</div>
+                    <div class="play-button"></div>
+                    <div class="duration">6:45</div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Make a Foaming Volcano Eruption!</h3>
+                    <div class="video-meta">
+                        <span class="difficulty easy">EASY</span>
+                        <span>⏱️ 10 min</span>
+                    </div>
+                    <p class="video-description">Create a fizzing, foaming volcano using baking soda and vinegar. Learn about chemical reactions and acids & bases!</p>
+                </div>
+            </div>
+
+            <!-- Video 3: Static Electricity -->
+            <div class="video-card" onclick="openVideo('static')">
+                <div class="video-thumbnail" style="background: linear-gradient(135deg, #4FACFE, #00F2FE);">
+                    <div class="thumbnail-icon">⚡</div>
+                    <div class="play-button"></div>
+                    <div class="duration">7:20</div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Static Electricity Magic Tricks!</h3>
+                    <div class="video-meta">
+                        <span class="difficulty easy">EASY</span>
+                        <span>⏱️ 5 min</span>
+                    </div>
+                    <p class="video-description">Make your hair stand up and bend water with static electricity! Learn how electrons move and create electric charges.</p>
+                </div>
+            </div>
+
+            <!-- Video 4: Density Tower -->
+            <div class="video-card" onclick="openVideo('density')">
+                <div class="video-thumbnail" style="background: linear-gradient(135deg, #A8EDEA, #FED6E3);">
+                    <div class="thumbnail-icon">🌈</div>
+                    <div class="play-button"></div>
+                    <div class="duration">9:15</div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Rainbow Density Tower - Floating Liquids!</h3>
+                    <div class="video-meta">
+                        <span class="difficulty easy">EASY</span>
+                        <span>⏱️ 20 min</span>
+                    </div>
+                    <p class="video-description">Stack different liquids in colorful layers! Discover why some liquids float on top of others and learn about density.</p>
+                </div>
+            </div>
+
+            <!-- Video 5: Balloon Rocket -->
+            <div class="video-card" onclick="openVideo('rocket')">
+                <div class="video-thumbnail" style="background: linear-gradient(135deg, #FA709A, #FEE140);">
+                    <div class="thumbnail-icon">🎈</div>
+                    <div class="play-button"></div>
+                    <div class="duration">5:50</div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Balloon Rocket Racing!</h3>
+                    <div class="video-meta">
+                        <span class="difficulty easy">EASY</span>
+                        <span>⏱️ 10 min</span>
+                    </div>
+                    <p class="video-description">Make a balloon zoom across a string! Learn about Newton's Third Law and how rockets really work in space.</p>
+                </div>
+            </div>
+
+            <!-- Video 6: Invisible Ink -->
+            <div class="video-card" onclick="openVideo('ink')">
+                <div class="video-thumbnail" style="background: linear-gradient(135deg, #30CFD0, #330867);">
+                    <div class="thumbnail-icon">🕵️</div>
+                    <div class="play-button"></div>
+                    <div class="duration">8:00</div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Secret Spy Messages with Invisible Ink!</h3>
+                    <div class="video-meta">
+                        <span class="difficulty easy">EASY</span>
+                        <span>⏱️ 15 min</span>
+                    </div>
+                    <p class="video-description">Write secret messages that only appear when heated! Learn about oxidation and how heat changes substances.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Video Details -->
+    <div id="videoModal" class="modal">
+        <button class="close-modal" onclick="closeModal()">✕</button>
+        <div class="modal-content" id="modalContent">
+            <!-- Content will be inserted by JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        const experiments = {
+            eggDrop: {
+                title: "Egg Drop Challenge - Don't Break the Egg!",
+                duration: "8:30",
+                difficulty: "EASY",
+                time: "15 minutes",
+                description: "Can you drop an egg from 10 feet high without breaking it? This classic physics experiment teaches you about gravity, impact force, and how to design protective structures!",
+                materials: [
+                    { icon: "🥚", name: "1 Raw Egg" },
+                    { icon: "📦", name: "Small Box or Container" },
+                    { icon: "🎈", name: "Balloons (optional)" },
+                    { icon: "🧻", name: "Cotton Balls or Paper Towels" },
+                    { icon: "📰", name: "Newspaper" },
+                    { icon: "✂️", name: "Tape & Scissors" },
+                    { icon: "🪂", name: "Plastic Bag (for parachute)" },
+                    { icon: "🧵", name: "String" }
+                ],
+                steps: [
+                    {
+                        title: "Choose Your Protection Method",
+                        description: "Decide how you'll protect the egg. You can use cushioning (cotton balls, paper), a parachute, or both! The goal is to slow down the fall and absorb the impact."
+                    },
+                    {
+                        title: "Build a Cushion System",
+                        description: "If using cushioning, put lots of soft materials around the egg inside your container. Make sure the egg is surrounded on all sides and can't move around."
+                    },
+                    {
+                        title: "Create a Parachute (Optional)",
+                        description: "Cut a square from a plastic bag (about 12 inches). Tie strings to each corner and attach them to your container. This will slow down the fall!"
+                    },
+                    {
+                        title: "Find a Drop Location",
+                        description: "Go outside and find a safe spot to drop from - a second-floor window, balcony, or ladder. Make sure the area below is clear!"
+                    },
+                    {
+                        title: "3... 2... 1... DROP!",
+                        description: "Let go of your egg protection device and watch it fall! Did your egg survive? If it broke, think about what you could improve and try again."
+                    }
+                ],
+                science: {
+                    title: "The Science Behind It",
+                    explanation: "When the egg falls, gravity pulls it down faster and faster - this is called acceleration. When it hits the ground, all that energy has to go somewhere! A hard impact breaks the egg. Your cushioning materials absorb the energy slowly, spreading it out over time. A parachute creates air resistance (drag), which slows the fall and gives the egg less energy when it lands. Real spacecraft use parachutes and airbags the same way to land safely!",
+                    funFact: "NASA used giant airbags to land rovers on Mars! Just like your egg drop experiment, they needed to absorb the impact energy to protect the equipment."
+                },
+                warning: "Do this outside! Even with protection, eggs can still break and make a mess. Get an adult's permission before dropping anything from high places."
+            },
+            volcano: {
+                title: "Make a Foaming Volcano Eruption!",
+                duration: "6:45",
+                difficulty: "EASY",
+                time: "10 minutes",
+                description: "Create an awesome erupting volcano that foams and bubbles! This experiment demonstrates a chemical reaction between an acid and a base.",
+                materials: [
+                    { icon: "🧂", name: "Baking Soda (2-3 tablespoons)" },
+                    { icon: "🍶", name: "Vinegar (1 cup)" },
+                    { icon: "🎨", name: "Food Coloring (red/orange)" },
+                    { icon: "🧴", name: "Dish Soap (1 squirt)" },
+                    { icon: "🏺", name: "Empty Bottle or Cup" },
+                    { icon: "🍽️", name: "Tray or Baking Pan" },
+                    { icon: "🏔️", name: "Clay or Play-Doh (optional)" },
+                    { icon: "🥄", name: "Spoon for Stirring" }
+                ],
+                steps: [
+                    {
+                        title: "Set Up Your Volcano Base",
+                        description: "Place your bottle or cup in the middle of a tray (to catch the mess!). If you have clay or play-doh, shape it around the bottle to look like a volcano mountain."
+                    },
+                    {
+                        title: "Add Baking Soda to the 'Crater'",
+                        description: "Put 2-3 tablespoons of baking soda into the bottle. This is your volcano's 'magma chamber' and will react with the vinegar!"
+                    },
+                    {
+                        title: "Mix Your Lava Solution",
+                        description: "In a separate cup, mix the vinegar with red or orange food coloring and a squirt of dish soap. The soap makes extra foam for a better eruption!"
+                    },
+                    {
+                        title: "Eruption Time!",
+                        description: "Quickly pour the vinegar mixture into the bottle with baking soda. Stand back and watch your volcano erupt with colorful, foaming 'lava'!"
+                    },
+                    {
+                        title: "Try Different Experiments",
+                        description: "Want a bigger eruption? Add more baking soda and vinegar! Try different amounts to see what makes the best volcano."
+                    }
+                ],
+                science: {
+                    title: "The Science Behind It",
+                    explanation: "Baking soda is a BASE and vinegar is an ACID. When they mix together, they have a chemical reaction that creates carbon dioxide gas (CO2). This is the same gas you breathe out and the bubbles in soda! The gas creates lots of foam and makes the 'lava' overflow. The dish soap traps the gas bubbles, making even more foam. Real volcanoes work differently - they erupt because of hot melted rock and gas pressure under the Earth's surface.",
+                    funFact: "The biggest volcanic eruption in recorded history was Mount Tambora in 1815. It was so powerful that it changed weather around the whole world for a year!"
+                },
+                warning: "Do this experiment outside or in a sink/bathtub! The foam can make a mess. Vinegar is safe but smells strong - don't get it in your eyes."
+            },
+            static: {
+                title: "Static Electricity Magic Tricks!",
+                duration: "7:20",
+                difficulty: "EASY",
+                time: "5 minutes",
+                description: "Use static electricity to perform amazing 'magic' tricks! Make your hair stand up, bend water, and pick up paper without touching it.",
+                materials: [
+                    { icon: "🎈", name: "Balloons (2-3)" },
+                    { icon: "🧶", name: "Wool Cloth or Sweater" },
+                    { icon: "📄", name: "Tissue Paper (torn into small pieces)" },
+                    { icon: "💧", name: "Water Faucet" },
+                    { icon: "🪮", name: "Plastic Comb" },
+                    { icon: "🪞", name: "Mirror (optional)" },
+                    { icon: "🧵", name: "Thread or String" },
+                    { icon: "✂️", name: "Scissors" }
+                ],
+                steps: [
+                    {
+                        title: "Blow Up Your Balloon",
+                        description: "Inflate a balloon and tie it closed. This will be your static electricity generator!"
+                    },
+                    {
+                        title: "Charge It Up!",
+                        description: "Rub the balloon quickly on your hair or a wool sweater for about 30 seconds. You're moving electrons from your hair to the balloon!"
+                    },
+                    {
+                        title: "Experiment 1: Standing Hair",
+                        description: "After rubbing the balloon on your head, slowly pull it away. Your hair will stand up and follow the balloon! Look in a mirror - you'll look like a mad scientist!"
+                    },
+                    {
+                        title: "Experiment 2: Bending Water",
+                        description: "Turn on a faucet to make a thin stream of water. Bring your charged balloon close to the water stream (don't touch it). The water will bend toward the balloon!"
+                    },
+                    {
+                        title: "Experiment 3: Paper Pick-Up",
+                        description: "Tear tissue paper into tiny pieces. Rub your balloon again, then hold it above the paper pieces. They'll jump up and stick to the balloon like magic!"
+                    },
+                    {
+                        title: "Experiment 4: Balloon vs. Balloon",
+                        description: "Charge two balloons by rubbing them. Try to bring them together - they'll push apart! Opposite charges attract, but same charges repel."
+                    }
+                ],
+                science: {
+                    title: "The Science Behind It",
+                    explanation: "Everything is made of atoms, which have positive protons, negative electrons, and neutral neutrons. When you rub the balloon, electrons move from your hair to the balloon. Now your hair has more positive charge and the balloon has more negative charge. Opposite charges attract each other - that's why your hair reaches toward the balloon! Water molecules have positive and negative ends, so they're attracted to the charged balloon too. When two balloons both have negative charges, they push each other away because same charges repel.",
+                    funFact: "Lightning is just really BIG static electricity! Clouds build up charges by rubbing against air, and when enough charge builds up, ZAP - a lightning bolt jumps to the ground!"
+                },
+                warning: "This works best on dry days. If it's humid or rainy, you won't get as much static. Never try to make static electricity during a thunderstorm!"
+            },
+            density: {
+                title: "Rainbow Density Tower - Floating Liquids!",
+                duration: "9:15",
+                difficulty: "EASY",
+                time: "20 minutes",
+                description: "Stack different liquids in colorful layers that don't mix! Learn why oil floats on water and create a beautiful rainbow in a jar.",
+                materials: [
+                    { icon: "🍯", name: "Honey or Corn Syrup" },
+                    { icon: "🧴", name: "Dish Soap" },
+                    { icon: "💧", name: "Water" },
+                    { icon: "🛢️", name: "Vegetable Oil" },
+                    { icon: "🍶", name: "Rubbing Alcohol" },
+                    { icon: "🎨", name: "Food Coloring (4 colors)" },
+                    { icon: "🏺", name: "Tall Clear Glass or Jar" },
+                    { icon: "🥄", name: "Spoon and Small Cups" }
+                ],
+                steps: [
+                    {
+                        title: "Prepare Your Liquids",
+                        description: "You'll need 5 different liquids. Add different food coloring to the water, dish soap, and rubbing alcohol so you can see each layer clearly. Use separate small cups for mixing."
+                    },
+                    {
+                        title: "Layer 1: The Heaviest (Honey)",
+                        description: "Pour honey or corn syrup into the bottom of your clear glass. This is the densest liquid, so it goes on the bottom. Pour slowly to avoid bubbles."
+                    },
+                    {
+                        title: "Layer 2: Dish Soap",
+                        description: "SLOWLY pour dish soap (colored with food coloring) down the side of the glass. Tilt the glass and let it slide down gently. It should float on top of the honey!"
+                    },
+                    {
+                        title: "Layer 3: Water",
+                        description: "Add colored water the same way - pour it slowly down the side. Watch it create its own layer! The slower you pour, the better your layers will be."
+                    },
+                    {
+                        title: "Layer 4: Vegetable Oil",
+                        description: "Pour the vegetable oil gently. Oil and water don't mix, so it will stay separate and float on top of the water layer."
+                    },
+                    {
+                        title: "Layer 5: The Lightest (Rubbing Alcohol)",
+                        description: "Finally, add colored rubbing alcohol on top. This is the least dense liquid, so it floats at the very top. You now have a rainbow density tower!"
+                    },
+                    {
+                        title: "Test Objects",
+                        description: "Drop in small objects like a grape, popcorn kernel, or small toy. Watch which layer each object sinks to based on its density!"
+                    }
+                ],
+                science: {
+                    title: "The Science Behind It",
+                    explanation: "Density is how much 'stuff' (mass) is packed into a space. Honey is very dense - it has lots of sugar molecules packed together, so it's heavy and sinks to the bottom. Rubbing alcohol is less dense - its molecules are spread out more, so it's lighter and floats on top. When liquids have different densities, they stack in layers from densest to least dense. Each liquid floats on the one below it that's more dense. This is why oil spills float on ocean water - oil is less dense than water!",
+                    funFact: "Ships float because they're less dense than water overall. Even though ships are made of heavy steel, they're filled with air, which makes their average density lower than water!"
+                },
+                warning: "Ask an adult for help with rubbing alcohol - it's not for drinking! Pour slowly and carefully to make the best layers. If you pour too fast, the layers will mix."
+            },
+            rocket: {
+                title: "Balloon Rocket Racing!",
+                duration: "5:50",
+                difficulty: "EASY",
+                time: "10 minutes",
+                description: "Make a balloon rocket that zooms across a string! Learn about Newton's Third Law of Motion and how real rockets work in space.",
+                materials: [
+                    { icon: "🎈", name: "Long Balloons (2-3)" },
+                    { icon: "🧵", name: "String or Fishing Line (10-15 feet)" },
+                    { icon: "📎", name: "Plastic Straw" },
+                    { icon: "📌", name: "Tape" },
+                    { icon: "✂️", name: "Scissors" },
+                    { icon: "🪑", name: "2 Chairs or Hooks" },
+                    { icon: "📏", name: "Measuring Tape (optional)" },
+                    { icon: "⏱️", name: "Stopwatch (optional)" }
+                ],
+                steps: [
+                    {
+                        title: "Set Up Your Track",
+                        description: "Tie one end of the string to a chair or door handle. Pull it tight and tie the other end to another chair across the room. This is your rocket's flight path!"
+                    },
+                    {
+                        title: "Prepare the Rocket",
+                        description: "Cut a straw into a 3-inch piece. Thread your string through the straw before tying the second end. The straw is your rocket's 'launch guide'."
+                    },
+                    {
+                        title: "Blow Up the Balloon",
+                        description: "Inflate a balloon but DON'T tie it! Hold the opening closed with your fingers. This trapped air is your rocket fuel!"
+                    },
+                    {
+                        title: "Attach Balloon to Straw",
+                        description: "Have a friend help! Keep holding the balloon closed while they tape it to the straw. Use 2-3 pieces of tape to make sure it's secure."
+                    },
+                    {
+                        title: "Move to Launch Position",
+                        description: "Slide your balloon rocket to one end of the string. Make sure the opening of the balloon is pointing away from where you want it to go."
+                    },
+                    {
+                        title: "3... 2... 1... LAUNCH!",
+                        description: "Let go of the balloon opening! The air rushes out one way, and the balloon zooms the other way. It's Newton's Third Law in action!"
+                    },
+                    {
+                        title: "Experiment More",
+                        description: "Try different balloon sizes. Use more or less air. Which makes the rocket go fastest? Measure the distance and time to find out!"
+                    }
+                ],
+                science: {
+                    title: "The Science Behind It",
+                    explanation: "This demonstrates Newton's Third Law of Motion: 'For every action, there is an equal and opposite reaction.' When air rushes OUT of the balloon (action), it pushes the balloon forward in the opposite direction (reaction). Real rockets work exactly the same way! They shoot hot gas out the back, and that pushes the rocket forward. In space, there's no air, but rockets carry their own fuel and oxygen. The faster the gas shoots out, the faster the rocket goes forward. That's why rocket engines are so powerful!",
+                    funFact: "The Saturn V rocket that took astronauts to the Moon used 950,000 gallons of fuel and could push with the force of 7.6 million pounds - that's as much as 100 jumbo jets!"
+                },
+                warning: "Make sure your string is tied tight and secure. Don't aim the balloon at people's faces. The balloon will fly across the room, so clear the area first!"
+            },
+            ink: {
+                title: "Secret Spy Messages with Invisible Ink!",
+                duration: "8:00",
+                difficulty: "EASY",
+                time: "15 minutes",
+                description: "Write secret messages that only appear when you apply heat! Learn about oxidation and create your own spy code.",
+                materials: [
+                    { icon: "🍋", name: "Lemon Juice (or milk/vinegar)" },
+                    { icon: "🥣", name: "Small Bowl" },
+                    { icon: "🖊️", name: "Cotton Swab or Toothpick" },
+                    { icon: "📄", name: "White Paper" },
+                    { icon: "💡", name: "Light Bulb (60-100 watt)" },
+                    { icon: "🔥", name: "Hair Dryer (optional)" },
+                    { icon: "🍴", name: "Spoon" },
+                    { icon: "🧃", name: "Cup" }
+                ],
+                steps: [
+                    {
+                        title: "Make Your Invisible Ink",
+                        description: "Squeeze lemon juice into a small bowl (about 2 tablespoons). You can also use milk, orange juice, vinegar, or even honey mixed with water. These all work as invisible ink!"
+                    },
+                    {
+                        title: "Create Your Writing Tool",
+                        description: "Dip a cotton swab, toothpick, or clean paintbrush into the lemon juice. This is your secret pen!"
+                    },
+                    {
+                        title: "Write Your Secret Message",
+                        description: "Write a message on white paper using your invisible ink. Press gently and re-dip your tool often. You might see faint writing now, but it will disappear as it dries."
+                    },
+                    {
+                        title: "Let It Dry Completely",
+                        description: "Wait 5-10 minutes for your message to dry completely. The writing will become invisible! You can even draw pictures or make a treasure map."
+                    },
+                    {
+                        title: "Reveal Method 1: Light Bulb",
+                        description: "Turn on a light bulb and hold the paper close to it (but not touching!). Move the paper around slowly. The heat will reveal your message as it turns brown!"
+                    },
+                    {
+                        title: "Reveal Method 2: Iron or Hair Dryer",
+                        description: "Ask an adult to help! You can also use a warm iron (with an adult's help) or a hair dryer on hot setting. Hold it a few inches from the paper and watch your message appear!"
+                    },
+                    {
+                        title: "Create a Spy Code",
+                        description: "Make your messages even more secret by creating a code! Replace letters with numbers or symbols. Only people who know the code can read it!"
+                    }
+                ],
+                science: {
+                    title: "The Science Behind It",
+                    explanation: "Lemon juice contains carbon compounds (like acid and sugars). When you write with lemon juice and it dries, you can't see it because the compounds are colorless. But when you heat the paper, the carbon compounds break down and OXIDIZE - they react with oxygen in the air. This oxidation reaction turns the carbon brown, making your message visible! The paper itself needs much higher heat to burn, so the lemon juice turns brown first. This same oxidation process is what makes cut apples turn brown!",
+                    funFact: "Real spies have used invisible ink for thousands of years! During the American Revolution, George Washington's spies used invisible ink to send secret messages. Modern invisible ink uses special chemicals that only show up under UV light!"
+                },
+                warning: "Always have an adult help when using heat sources! Don't hold paper too close to hot bulbs - it could burn. Never use an iron or stove by yourself. Lemon juice is safe, but don't get it in your eyes."
+            }
+        };
+
+        function openVideo(experimentId) {
+            const experiment = experiments[experimentId];
+            const modal = document.getElementById('videoModal');
+            const modalContent = document.getElementById('modalContent');
+            
+            let materialsHTML = '';
+            experiment.materials.forEach(material => {
+                materialsHTML += `
+                    <div class="material-item">
+                        <span class="material-icon">${material.icon}</span>
+                        <span>${material.name}</span>
+                    </div>
+                `;
+            });
+
+            let stepsHTML = '';
+            experiment.steps.forEach(step => {
+                stepsHTML += `
+                    <li class="step-item">
+                        <div class="step-title">${step.title}</div>
+                        <div class="step-description">${step.description}</div>
+                    </li>
+                `;
+            });
+
+            modalContent.innerHTML = `
+                <div class="video-player">
+                    🎬 Video Player
+                    <br><small style="font-size: 1rem;">(Imagine a cool tutorial video playing here!)</small>
+                </div>
+                <div class="video-details">
+                    <h2>${experiment.title}</h2>
+                    <div class="video-meta">
+                        <span class="difficulty ${experiment.difficulty.toLowerCase()}">${experiment.difficulty}</span>
+                        <span>⏱️ ${experiment.time}</span>
+                        <span>📹 ${experiment.duration}</span>
+                    </div>
+                    <p style="font-size: 1.1rem; margin-top: 15px; line-height: 1.6;">${experiment.description}</p>
+                    
+                    ${experiment.warning ? `<div class="warning-box"><strong>Safety First!</strong> ${experiment.warning}</div>` : ''}
+                    
+                    <div class="materials-section">
+                        <h3>🛒 What You'll Need:</h3>
+                        <div class="materials-list">
+                            ${materialsHTML}
+                        </div>
+                    </div>
+                    
+                    <div class="steps-section">
+                        <h3>📋 Step-by-Step Instructions:</h3>
+                        <ol class="steps-list">
+                            ${stepsHTML}
+                        </ol>
+                    </div>
+                    
+                    <div class="science-section">
+                        <h3>🔬 ${experiment.science.title}</h3>
+                        <p style="font-size: 1.1rem; line-height: 1.7; margin-top: 15px;">${experiment.science.explanation}</p>
+                        <div class="fun-fact">${experiment.science.funFact}</div>
+                    </div>
+                </div>
+            `;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('videoModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('videoModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
