@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theory of Relativity - Physics For Everyone</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red: #FF0000;
+            --orange: #FF6B00;
+            --yellow: #FFD700;
+            --blue: #2196F3;
+            --purple: #9C27B0;
+            --green: #4CAF50;
+            --dark: #0F0F0F;
+            --gray: #3C3C3C;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--dark);
+            color: white;
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--dark);
+            padding: 15px 40px;
+            border-bottom: 1px solid var(--gray);
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--red);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+
+        .logo-text {
+            color: white;
+        }
+
+        .logo-text span {
+            color: var(--red);
+        }
+
+        .back-link {
+            margin-left: auto;
+            text-decoration: none;
+            color: white;
+            background: var(--gray);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: var(--blue);
+            transform: scale(1.05);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 4rem;
+            text-shadow: 4px 4px 0 rgba(0,0,0,0.3);
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--orange), var(--yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .biography {
+            background: linear-gradient(135deg, var(--orange), var(--red));
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .biography h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .biography p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .concept-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .concept-card {
+            background: var(--gray);
+            color: white;
+            border: 3px solid transparent;
+            padding: 40px 30px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+            animation: fadeInUp 0.6s ease-out backwards;
+        }
+
+        .concept-card:nth-child(1) { animation-delay: 0.2s; }
+        .concept-card:nth-child(2) { animation-delay: 0.3s; }
+        .concept-card:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .concept-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            border-color: var(--yellow);
+        }
+
+        .concept-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .concept-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .concept-preview {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .explanation-section {
+            background: white;
+            color: var(--dark);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 30px 0;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .explanation-section h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            color: var(--orange);
+            margin-bottom: 20px;
+        }
+
+        .explanation-box {
+            background: #f0f0f0;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 5px solid var(--orange);
+        }
+
+        .red-text {
+            color: var(--red);
+            font-weight: 700;
+            font-size: 1.15rem;
+        }
+
+        .fun-fact {
+            background: linear-gradient(135deg, var(--green), #27ae60);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 30px;
+            font-size: 1.1rem;
+        }
+
+        .fun-fact::before {
+            content: "💡 Fun Fact: ";
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .formula {
+            font-family: 'Courier New', monospace;
+            font-size: 2.5rem;
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, var(--purple), var(--blue));
+            color: white;
+            border-radius: 15px;
+            margin: 30px 0;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .concept-cards { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <div class="logo-icon">🔬</div>
+            <div class="logo-text">Physics<span>ForEveryone</span></div>
+        </div>
+        <a href="index.html" class="back-link">← Back to Experiments</a>
+    </header>
+
+    <div class="container">
+        <div class="hero">
+            <h1>🌌 Einstein's Theory of Relativity 🌌</h1>
+            <p class="subtitle">The Revolutionary Ideas That Changed Physics Forever</p>
+        </div>
+
+        <!-- Einstein's Biography -->
+        <div class="biography">
+            <h2>👨‍🔬 About Albert Einstein</h2>
+            <p><strong>Born:</strong> March 14, 1879, in Ulm, Germany</p>
+            
+            <p><strong>Died:</strong> April 18, 1955 (at age 76) in Princeton, New Jersey, USA</p>
+            
+            <p><strong>Education:</strong> Einstein struggled in school as a child but loved mathematics and physics. He attended the Swiss Federal Polytechnic School in Zurich and graduated in 1900. He couldn't find a teaching job at first and worked as a patent clerk while developing his theories!</p>
+            
+            <p><strong>When He Made His Theory:</strong> Einstein published his Special Theory of Relativity in 1905 when he was only 26 years old! This was his "miracle year" when he also explained the photoelectric effect (which won him the Nobel Prize) and proved atoms exist. He published his General Theory of Relativity in 1915, which explained gravity in a completely new way.</p>
+            
+            <p><strong>The Famous Equation E=mc²:</strong> This equation shows that energy (E) equals mass (m) times the speed of light (c) squared. It means that a tiny amount of mass can be converted into a HUGE amount of energy! This is how the sun produces energy and how nuclear power works.</p>
+            
+            <p><strong>Other Achievements:</strong> Einstein won the Nobel Prize in Physics in 1921 (for the photoelectric effect, not relativity!), helped prove that atoms are real, explained why the sky is blue, and showed that light can behave as both a wave and a particle. He became the most famous scientist in the world!</p>
+            
+            <p><strong>Legacy:</strong> Einstein's theories revolutionized our understanding of space, time, gravity, and the universe. His work made GPS satellites possible (they need relativity corrections!), explained black holes before we discovered them, and predicted gravitational waves that were finally detected in 2015. He showed that space and time are connected as "spacetime" and that gravity is actually the bending of spacetime!</p>
+        </div>
+
+        <!-- Concept Cards -->
+        <div class="concept-cards">
+            <a href="special-relativity.html" style="text-decoration: none;">
+                <div class="concept-card">
+                    <div class="concept-icon">⚡</div>
+                    <div class="concept-title">Special Relativity</div>
+                    <p class="concept-preview">Time slows down when you move fast! Nothing can go faster than light!</p>
+                </div>
+            </a>
+
+            <a href="general-relativity.html" style="text-decoration: none;">
+                <div class="concept-card">
+                    <div class="concept-icon">🌍</div>
+                    <div class="concept-title">General Relativity</div>
+                    <p class="concept-preview">Gravity isn't a force - it's the bending of space and time!</p>
+                </div>
+            </a>
+
+            <a href="emc2.html" style="text-decoration: none;">
+                <div class="concept-card">
+                    <div class="concept-icon">💥</div>
+                    <div class="concept-title">E = mc²</div>
+                    <p class="concept-preview">Mass and energy are the same thing! That's how stars shine!</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Removed scroll function since we're using separate pages now
+    </script>
+</body>
+</html>
+        <div class="explanation-section" id="special">
+            <h3>⚡ Special Theory of Relativity (1905)</h3>
+            
+            <div class="explanation-box">
+                <strong>Simple Explanation:</strong><br><br>
+                <span class="red-text">The faster you move, the slower time goes for you! And nothing can travel faster than the speed of light!</span>
+                <br><br>
+                Imagine you're on a spaceship traveling at 90% the speed of light. To you, everything feels normal. But to someone watching from Earth, you're moving in slow motion! Your clock runs slower, you age slower, and even your spaceship looks shorter! This isn't science fiction - it's real physics that we've proven with experiments!
+            </div>
+
+            <div class="formula">
+                c = 299,792,458 m/s
+                <div style="font-size: 1.2rem; margin-top: 10px;">(Speed of Light - The Universal Speed Limit!)</div>
+            </div>
+
+            <!-- SIMULATION 1: TIME DILATION - Moving objects age slower -->
+            <div style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border-radius: 15px; padding: 30px; margin: 30px 0;">
+                <h3 style="font-family: 'Poppins', sans-serif; font-size: 1.8rem; color: var(--purple); margin-bottom: 20px; text-align: center;">
+                    🎮 Simulation 1: The Twin Paradox - Time Moves Slower When You Move!
+                </h3>
+                <p style="text-align: center; color: #333; font-weight: 700; margin-bottom: 20px;">
+                    Click "Start Journey" to send one twin on a space journey at near light-speed!
+                </p>
+                
+                <div style="display: flex; justify-content: space-around; align-items: flex-start; min-height: 350px; flex-wrap: wrap; gap: 20px;">
+                    <!-- Twin on Earth -->
+                    <div style="text-align: center; background: white; padding: 20px; border-radius: 15px; min-width: 250px;">
+                        <h4 style="color: var(--blue); font-size: 1.3rem; margin-bottom: 15px;">👨 Twin on Earth</h4>
+                        <div style="font-size: 4rem; margin: 20px 0;">🧍</div>
+                        <div style="background: #f0f0f0; padding: 15px; border-radius: 10px; margin: 15px 0;">
+                            <div style="font-size: 1.1rem; font-weight: 700; color: #333;">Age:</div>
+                            <div id="earthAge" style="font-size: 2.5rem; font-weight: 800; color: var(--blue);">25</div>
+                        </div>
+                        <div style="background: #e8f4f8; padding: 10px; border-radius: 8px;">
+                            <div style="font-size: 0.9rem; color: #666;">Time Elapsed:</div>
+                            <div id="earthTime" style="font-size: 1.3rem; font-weight: 700; color: var(--blue);">0 years</div>
+                        </div>
+                    </div>
+
+                    <!-- Twin in Spaceship -->
+                    <div style="text-align: center; background: white; padding: 20px; border-radius: 15px; min-width: 250px;">
+                        <h4 style="color: var(--orange); font-size: 1.3rem; margin-bottom: 15px;">🚀 Twin in Spaceship (99% speed of light)</h4>
+                        <div style="font-size: 4rem; margin: 20px 0;" id="rocketIcon">🧑‍🚀</div>
+                        <div style="background: #fff3e0; padding: 15px; border-radius: 10px; margin: 15px 0;">
+                            <div style="font-size: 1.1rem; font-weight: 700; color: #333;">Age:</div>
+                            <div id="spaceAge" style="font-size: 2.5rem; font-weight: 800; color: var(--orange);">25</div>
+                        </div>
+                        <div style="background: #fff3e0; padding: 10px; border-radius: 8px;">
+                            <div style="font-size: 0.9rem; color: #666;">Time Experienced:</div>
+                            <div id="spaceTime" style="font-size: 1.3rem; font-weight: 700; color: var(--orange);">0 years</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 30px;">
+                    <button onclick="startTwinSimulation()" id="twinBtn" style="background: linear-gradient(135deg, var(--blue), var(--purple)); color: white; border: none; padding: 15px 40px; font-size: 1.2rem; font-family: 'Poppins', sans-serif; font-weight: 700; border-radius: 50px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2); margin-right: 10px;">
+                        🚀 Start Journey
+                    </button>
+                    <button onclick="resetTwinSimulation()" style="background: var(--gray); color: white; border: none; padding: 15px 40px; font-size: 1.2rem; font-family: 'Poppins', sans-serif; font-weight: 700; border-radius: 50px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+                        🔄 Reset
+                    </button>
+                </div>
+                
+                <div id="twinResult" style="text-align: center; margin-top: 20px; font-size: 1.2rem; font-weight: 700; color: var(--red); min-height: 30px;"></div>
+            </div>
+
+            <p style="font-size: 1.2rem; line-height: 1.8;">
+                <strong>Time Dilation:</strong> If you traveled in a spaceship at 99% the speed of light for what feels like 1 year to you, about 7 years would pass on Earth! Your twin would be 6 years older than you when you returned!
+                <br><br>
+                <strong>Length Contraction:</strong> Objects moving really fast appear shorter in the direction they're moving. A 100-meter spaceship traveling at 99% light speed would look only 14 meters long to someone standing still!
+                <br><br>
+                <strong>Nothing Goes Faster Than Light:</strong> No matter how much energy you use, you can never accelerate past the speed of light. Light always travels at the same speed - 299,792,458 meters per second - no matter how fast you're moving!
+            </p>
+
+            <div class="fun-fact">
+                GPS satellites have to account for time dilation! They're moving fast and experiencing less gravity than us, so their clocks run at a slightly different speed. Without Einstein's relativity corrections, GPS would be off by several kilometers every day!
+            </div>
+        </div>
+
+        <!-- General Relativity Explanation -->
+        <div class="explanation-section" id="general">
+            <h3>🌍 General Theory of Relativity (1915)</h3>
+            
+            <div class="explanation-box">
+                <strong>Simple Explanation:</strong><br><br>
+                <span class="red-text">Gravity isn't a force pulling you down - it's space and time being bent by massive objects!</span>
+                <br><br>
+                Think of space like a trampoline. When you put a bowling ball (the Sun) on the trampoline, it creates a dip. Now roll a marble (Earth) near it - the marble curves around the bowling ball because of the dip, not because the bowling ball is pulling it! That's how gravity really works - massive objects bend spacetime, and other objects follow the curves!
+            </div>
+
+            <!-- SIMULATION 2: SPACETIME BENDING -->
+            <div style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border-radius: 15px; padding: 30px; margin: 30px 0;">
+                <h3 style="font-family: 'Poppins', sans-serif; font-size: 1.8rem; color: var(--purple); margin-bottom: 20px; text-align: center;">
+                    🎮 Simulation 2: Spacetime Bending - How Gravity Really Works!
+                </h3>
+                <p style="text-align: center; color: #333; font-weight: 700; margin-bottom: 20px;">
+                    Click on the grid to place massive objects and watch spacetime bend!
+                </p>
+                
+                <div style="position: relative; width: 100%; max-width: 600px; margin: 0 auto;">
+                    <canvas id="spacetimeCanvas" width="600" height="400" style="border: 3px solid #333; border-radius: 10px; background: #000; cursor: crosshair; display: block; width: 100%; max-width: 600px; height: auto;"></canvas>
+                </div>
+
+                <div style="text-align: center; margin-top: 20px;">
+                    <button onclick="addMassiveObject('small')" style="background: linear-gradient(135deg, #4ECDC4, #2196F3); color: white; border: none; padding: 12px 25px; font-size: 1rem; font-family: 'Poppins', sans-serif; font-weight: 700; border-radius: 50px; cursor: pointer; margin: 5px;">
+                        🌍 Add Small Mass
+                    </button>
+                    <button onclick="addMassiveObject('medium')" style="background: linear-gradient(135deg, #FFD700, #FFA500); color: white; border: none; padding: 12px 25px; font-size: 1rem; font-family: 'Poppins', sans-serif; font-weight: 700; border-radius: 50px; cursor: pointer; margin: 5px;">
+                        ⭐ Add Medium Mass
+                    </button>
+                    <button onclick="addMassiveObject('large')" style="background: linear-gradient(135deg, #FF6B6B, #c92a2a); color: white; border: none; padding: 12px 25px; font-size: 1rem; font-family: 'Poppins', sans-serif; font-weight: 700; border-radius: 50px; cursor: pointer; margin: 5px;">
+                        ☀️ Add Large Mass
+                    </button>
+                    <button onclick="clearSpacetime()" style="background: var(--gray); color: white; border: none; padding: 12px 25px; font-size: 1rem; font-family: 'Poppins', sans-serif; font-weight: 700; border-radius: 50px; cursor: pointer; margin: 5px;">
+                        🔄 Clear All
+                    </button>
+                </div>
+                
+                <p style="text-align: center; margin-top: 15px; color: #666; font-size: 1rem;">
+                    💡 Tip: The bigger the mass, the more it bends spacetime! Watch how the grid curves around massive objects!
+                </p>
+            </div>
+
+            <p style="font-size: 1.2rem; line-height: 1.8;">
+                <strong>Spacetime is Curved:</strong> Einstein showed that space and time are connected as one thing called "spacetime." Massive objects like the Sun, Earth, or black holes bend spacetime around them. What we feel as gravity is actually us moving through this curved spacetime!
+                <br><br>
+                <strong>Light Bends Around Stars:</strong> Because spacetime is bent by massive objects, even light follows the curves! During a solar eclipse in 1919, scientists observed stars that should have been behind the Sun - the Sun's gravity bent the starlight around it, proving Einstein was right!
+                <br><br>
+                <strong>Black Holes:</strong> Einstein's equations predicted black holes - objects so massive and dense that they bend spacetime so extremely that not even light can escape! We've now photographed black holes and detected the gravitational waves they create when they collide.
+                <br><br>
+                <strong>Time Runs Slower Near Massive Objects:</strong> The closer you are to a massive object like Earth, the slower time moves. Someone living on a mountain ages slightly faster than someone at sea level because they're farther from Earth's center! The difference is tiny, but it's real and measurable.
+            </p>
+
+            <div class="fun-fact">
+                If you fell into a black hole, from your perspective you'd fall in normally. But to someone watching from far away, you'd appear to slow down and freeze at the edge (called the event horizon) because time dilation becomes infinite there! You'd look frozen in time forever!
+            </div>
+        </div>
+
+        <!-- E=mc² Explanation -->
+        <div class="explanation-section" id="emc2">
+            <h3>💥 E = mc² - The Most Famous Equation</h3>
+            
+            <div class="formula">
+                E = mc²
+            </div>
+
+            <div class="explanation-box">
+                <strong>Simple Explanation:</strong><br><br>
+                <span class="red-text">Energy (E) equals mass (m) times the speed of light (c) squared. Mass and energy are the same thing - just in different forms!</span>
+                <br><br>
+                This equation means that a tiny bit of mass contains a HUGE amount of energy. If you could convert just 1 gram of matter (about the mass of a paperclip) completely into energy, it would release the same energy as 20,000 tons of TNT - enough to power a city for days!
+            </div>
+
+            <!-- SIMULATION 3: TIME GROWING BOX -->
+            <div style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border-radius: 15px; padding: 30px; margin: 30px 0;">
+                <h3 style="font-family: 'Poppins', sans-serif; font-size: 1.8rem; color: var(--purple); margin-bottom: 20px; text-align: center;">
+                    🎮 Simulation 3: Time Is Growing - Watch Time Pass!
+                </h3>
+                <p style="text-align: center; color: #333; font-weight: 700; margin-bottom: 20px;">
+                    This box grows as time passes - showing that time is always moving forward!
+                </p>
+                
+                <div style="display: flex; justify-content: center; align-items: center; min-height: 300px; position: relative;">
+                    <div id="timeBox" style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--blue), var(--purple)); border-radius: 10px; transition: all 0.5s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.5rem;"></div>
+                </div>
+
+                <div style="text-align: center; margin-top: 20px;">
+                    <div id="timeDisplay" style="font-size: 2rem; font-weight: 800; color: var(--purple); margin-bottom: 15px;">Time: 0s</div>
+                    <div id="sizeDisplay" style="font-size: 1.3rem; color: #666; margin-bottom: 20px;">Box Size: 50px × 50px</div>
+                    
+                    <button onclick="startTimeGrowth()" id="timeBtn" style="background: linear-gradient(135deg, var(--green), #27ae60); color: white; border: none; padding: 15px 40px; font-size: 1.2rem; font-family: 'Poppins', sans-serif; font-weight: 700; border-radius: 50px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2); margin-right: 10px;">
+                        ▶️ Start Time
+                    </button>
+                    <button onclick="stopTimeGrowth()" style="background: linear-gradient(135deg, var(--red), #c92a2a); color: white; border: none; padding: 15px 40px; font-size: 1.2rem; font-family: 'Poppins', sans-serif; font-weight: 700; border-radius: 50px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2); margin-right: 10px;">
+                        ⏸️ Stop Time
+                    </button>
+                    <button onclick="resetTimeGrowth()" style="background: var(--gray); color: white; border: none; padding: 15px 40px; font-size: 1.2rem; font-family: 'Poppins', sans-serif; font-weight: 700; border-radius: 50px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+                        🔄 Reset
+                    </button>
+                </div>
+                
+                <p style="text-align: center; margin-top: 20px; color: #666; font-size: 1.1rem; line-height: 1.6;">
+                    ⏰ Time flows in one direction - always forward! The box grows bigger as time passes, just like how the universe expands with time. Einstein showed that time itself can bend and slow down, but it always moves forward!
+                </p>
+            </div>
+
+            <p style="font-size: 1.2rem; line-height: 1.8;">
+                <strong>How the Sun Shines:</strong> Inside the Sun's core, hydrogen atoms fuse together to make helium. In this process, a tiny bit of mass is "lost" and converted into energy (light and heat) according to E=mc². The Sun converts 4 million tons of mass into energy every second - that's how it's been shining for 4.6 billion years!
+                <br><br>
+                <strong>Why c²?:</strong> The speed of light (c) is 299,792,458 meters per second. When you square it (multiply it by itself), you get a HUGE number: about 90,000,000,000,000,000! That's why even a tiny amount of mass equals enormous energy.
+                <br><br>
+                <strong>Mass-Energy Equivalence:</strong> Einstein showed that mass and energy are two forms of the same thing. You can convert mass into energy (like in the Sun) and energy into mass (like in particle accelerators where they create new particles from pure energy!).
+                <br><br>
+                <strong>Nuclear Power:</strong> Nuclear power plants and nuclear weapons both work because of E=mc². When uranium atoms split (nuclear fission), a tiny amount of mass becomes energy. Even though only about 0.1% of the mass converts to energy, it's enough to power cities or cause massive explosions.
+            </p>
+
+            <div class="fun-fact">
+                When you charge your phone battery, it actually gets slightly heavier! The energy you add has mass according to E=mc². But the increase is incredibly tiny - charging your phone adds about 0.00000000001 grams. You'd need a scale more precise than anything that exists to measure it!
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // SIMULATION 1: TWIN PARADOX - Time Dilation
+        let twinInterval = null;
+        let earthYears = 0;
+        let spaceYears = 0;
+        const TIME_DILATION_FACTOR = 7; // At 99% light speed, 1 year for traveler = ~7 years on Earth
+
+        function startTwinSimulation() {
+            if (twinInterval) return; // Already running
+            
+            document.getElementById('twinBtn').disabled = true;
+            document.getElementById('twinResult').textContent = '';
+            
+            twinInterval = setInterval(() => {
+                earthYears += 1;
+                spaceYears += 1 / TIME_DILATION_FACTOR;
+                
+                document.getElementById('earthAge').textContent = (25 + earthYears).toFixed(1);
+                document.getElementById('earthTime').textContent = earthYears.toFixed(1) + ' years';
+                document.getElementById('spaceAge').textContent = (25 + spaceYears).toFixed(1);
+                document.getElementById('spaceTime').textContent = spaceYears.toFixed(1) + ' years';
+                
+                // After 10 Earth years, show result
+                if (earthYears >= 10) {
+                    clearInterval(twinInterval);
+                    twinInterval = null;
+                    document.getElementById('twinBtn').disabled = false;
+                    const ageDifference = (earthYears - spaceYears).toFixed(1);
+                    document.getElementById('twinResult').textContent = 
+                        `🚀 Journey Complete! The Earth twin is ${ageDifference} years OLDER! Time moved slower for the space twin!`;
+                }
+            }, 500); // Update every 0.5 seconds
+        }
+
+        function resetTwinSimulation() {
+            if (twinInterval) {
+                clearInterval(twinInterval);
+                twinInterval = null;
+            }
+            earthYears = 0;
+            spaceYears = 0;
+            document.getElementById('earthAge').textContent = '25';
+            document.getElementById('earthTime').textContent = '0 years';
+            document.getElementById('spaceAge').textContent = '25';
+            document.getElementById('spaceTime').textContent = '0 years';
+            document.getElementById('twinResult').textContent = '';
+            document.getElementById('twinBtn').disabled = false;
+        }
+
+        // SIMULATION 2: SPACETIME BENDING
+        const canvas = document.getElementById('spacetimeCanvas');
+        const ctx = canvas.getContext('2d');
+        let masses = [];
+        let nextMassType = 'small';
+
+        function drawSpacetime() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw grid with curvature
+            ctx.strokeStyle = '#00ffff';
+            ctx.lineWidth = 1;
+            
+            const gridSize = 40;
+            
+            // Draw vertical lines with bending
+            for (let x = 0; x <= canvas.width; x += gridSize) {
+                ctx.beginPath();
+                for (let y = 0; y <= canvas.height; y += 5) {
+                    let offsetX = 0;
+                    
+                    // Calculate bending based on nearby masses
+                    masses.forEach(mass => {
+                        const dx = x - mass.x;
+                        const dy = y - mass.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        const influence = Math.max(0, (mass.radius * 3) - distance);
+                        offsetX += (dx / distance) * influence * 0.3;
+                    });
+                    
+                    if (y === 0) {
+                        ctx.moveTo(x + offsetX, y);
+                    } else {
+                        ctx.lineTo(x + offsetX, y);
+                    }
+                }
+                ctx.stroke();
+            }
+            
+            // Draw horizontal lines with bending
+            for (let y = 0; y <= canvas.height; y += gridSize) {
+                ctx.beginPath();
+                for (let x = 0; x <= canvas.width; x += 5) {
+                    let offsetY = 0;
+                    
+                    masses.forEach(mass => {
+                        const dx = x - mass.x;
+                        const dy = y - mass.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        const influence = Math.max(0, (mass.radius * 3) - distance);
+                        offsetY += (dy / distance) * influence * 0.3;
+                    });
+                    
+                    if (x === 0) {
+                        ctx.moveTo(x, y + offsetY);
+                    } else {
+                        ctx.lineTo(x, y + offsetY);
+                    }
+                }
+                ctx.stroke();
+            }
+            
+            // Draw masses
+            masses.forEach(mass => {
+                const gradient = ctx.createRadialGradient(mass.x, mass.y, 0, mass.x, mass.y, mass.radius);
+                gradient.addColorStop(0, mass.color);
+                gradient.addColorStop(1, '#000');
+                
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(mass.x, mass.y, mass.radius, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Glow effect
+                ctx.strokeStyle = mass.color;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            });
+        }
+
+        function addMassiveObject(type) {
+            nextMassType = type;
+        }
+
+        canvas.addEventListener('click', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            const scaleX = canvas.width / rect.width;
+            const scaleY = canvas.height / rect.height;
+            const x = (e.clientX - rect.left) * scaleX;
+            const y = (e.clientY - rect.top) * scaleY;
+            
+            let radius, color;
+            if (nextMassType === 'small') {
+                radius = 20;
+                color = '#4ECDC4';
+            } else if (nextMassType === 'medium') {
+                radius = 35;
+                color = '#FFD700';
+            } else {
+                radius = 50;
+                color = '#FF6B6B';
+            }
+            
+            masses.push({ x, y, radius, color });
+            drawSpacetime();
+        });
+
+        function clearSpacetime() {
+            masses = [];
+            drawSpacetime();
+        }
+
+        // Initial draw
+        drawSpacetime();
+
+        // SIMULATION 3: TIME GROWING BOX
+        let timeGrowthInterval = null;
+        let timeElapsed = 0;
+
+        function startTimeGrowth() {
+            if (timeGrowthInterval) return;
+            
+            timeGrowthInterval = setInterval(() => {
+                timeElapsed += 0.1;
+                const newSize = 50 + (timeElapsed * 10);
+                
+                document.getElementById('timeBox').style.width = newSize + 'px';
+                document.getElementById('timeBox').style.height = newSize + 'px';
+                document.getElementById('timeBox').textContent = timeElapsed.toFixed(1) + 's';
+                document.getElementById('timeDisplay').textContent = 'Time: ' + timeElapsed.toFixed(1) + 's';
+                document.getElementById('sizeDisplay').textContent = 'Box Size: ' + newSize.toFixed(0) + 'px × ' + newSize.toFixed(0) + 'px';
+            }, 100);
+        }
+
+        function stopTimeGrowth() {
+            if (timeGrowthInterval) {
+                clearInterval(timeGrowthInterval);
+                timeGrowthInterval = null;
+            }
+        }
+
+        function resetTimeGrowth() {
+            stopTimeGrowth();
+            timeElapsed = 0;
+            document.getElementById('timeBox').style.width = '50px';
+            document.getElementById('timeBox').style.height = '50px';
+            document.getElementById('timeBox').textContent = '';
+            document.getElementById('timeDisplay').textContent = 'Time: 0s';
+            document.getElementById('sizeDisplay').textContent = 'Box Size: 50px × 50px';
+        }
+    </script>
+</body>
+</html>
