@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>General Relativity - Physics For Everyone</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --red: #FF0000; --orange: #FF6B00; --yellow: #FFD700;
+            --blue: #2196F3; --purple: #9C27B0; --green: #4CAF50;
+            --dark: #0F0F0F; --gray: #3C3C3C;
+        }
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--dark);
+            color: white;
+            line-height: 1.6;
+        }
+        header {
+            background: var(--dark);
+            padding: 15px 40px;
+            border-bottom: 1px solid var(--gray);
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+        }
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--red);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+        .logo-text { color: white; }
+        .logo-text span { color: var(--red); }
+        .back-link {
+            margin-left: auto;
+            text-decoration: none;
+            color: white;
+            background: var(--gray);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+        .back-link:hover {
+            background: var(--blue);
+            transform: scale(1.05);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, var(--green), var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .explanation-section {
+            background: white;
+            color: var(--dark);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 30px 0;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+        .explanation-box {
+            background: #f0f0f0;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 5px solid var(--green);
+        }
+        .red-text {
+            color: var(--red);
+            font-weight: 700;
+            font-size: 1.15rem;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, var(--green), #27ae60);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 30px;
+            font-size: 1.1rem;
+        }
+        .fun-fact::before {
+            content: "💡 Fun Fact: ";
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <div class="logo-icon">🔬</div>
+            <div class="logo-text">Physics<span>ForEveryone</span></div>
+        </div>
+        <a href="theory-of-relativity.html" class="back-link">← Back to Relativity</a>
+    </header>
+
+    <div class="container">
+        <h1>🌍 General Theory of Relativity (1915)</h1>
+        
+        <div class="explanation-section">
+            <div class="explanation-box">
+                <strong>Simple Explanation:</strong><br><br>
+                <span class="red-text">Gravity isn't a force pulling you down - it's space and time being bent by massive objects!</span>
+                <br><br>
+                Think of space like a trampoline. When you put a bowling ball (the Sun) on the trampoline, it creates a dip. Now roll a marble (Earth) near it - the marble curves around the bowling ball because of the dip, not because the bowling ball is pulling it! That's how gravity really works!
+            </div>
+
+            <!-- SIMULATION: ORBITAL GRAVITY -->
+            <div style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border-radius: 15px; padding: 30px; margin: 30px 0;">
+                <h3 style="font-family: 'Poppins', sans-serif; font-size: 1.8rem; color: var(--purple); margin-bottom: 20px; text-align: center;">
+                    🎮 Interactive: Orbital Gravity - Watch Objects Orbit!
+                </h3>
+                <p style="text-align: center; color: #333; font-weight: 700; margin-bottom: 20px;">
+                    Click to place masses! Small orbits Medium, Medium orbits Large!
+                </p>
+                
+                <div style="position: relative; width: 100%; max-width: 600px; margin: 0 auto;">
+                    <canvas id="canvas" width="600" height="400" style="border: 3px solid #333; border-radius: 10px; background: #000; cursor: crosshair; display: block; width: 100%; max-width: 600px; height: auto;"></canvas>
+                </div>
+
+                <div style="text-align: center; margin-top: 20px;">
+                    <button onclick="setMass('small')" style="background: linear-gradient(135deg, #4ECDC4, #2196F3); color: white; border: none; padding: 12px 25px; font-size: 1rem; font-family: 'Poppins', sans-serif; font-weight: 700; border-radius: 50px; cursor: pointer; margin: 5px;">🌙 Moon (Orbits Planet)</button>
+                    <button onclick="setMass('medium')" style="background: linear-gradient(135deg, #FFD700, #FFA500); color: white; border: none; padding: 12px 25px; font-size: 1rem; font-family: 'Poppins', sans-serif; font-weight: 700; border-radius: 50px; cursor: pointer; margin: 5px;">🪐 Planet (Orbits Sun)</button>
+                    <button onclick="setMass('large')" style="background: linear-gradient(135deg, #FF6B6B, #c92a2a); color: white; border: none; padding: 12px 25px; font-size: 1rem; font-family: 'Poppins', sans-serif; font-weight: 700; border-radius: 50px; cursor: pointer; margin: 5px;">☀️ Sun (Center)</button>
+                    <button onclick="clearAll()" style="background: var(--gray); color: white; border: none; padding: 12px 25px; font-size: 1rem; font-family: 'Poppins', sans-serif; font-weight: 700; border-radius: 50px; cursor: pointer; margin: 5px;">🔄 Clear</button>
+                </div>
+                
+                <p style="text-align: center; margin-top: 15px; color: #666; line-height: 1.6;">
+                    💡 Try this: Add a Sun in the center, then add Planets around it - they orbit!<br>
+                    Then add Moons close to the Planets - the moons orbit the planets while the planets orbit the sun!<br>
+                    Just like Earth orbits the Sun, and the Moon orbits Earth! 🌍🌙☀️
+                </p>
+            </div>
+
+            <p style="font-size: 1.2rem; line-height: 1.8;">
+                <strong>Spacetime is Curved:</strong> Massive objects like the Sun, Earth, or black holes bend spacetime around them. What we feel as gravity is actually us moving through this curved spacetime!
+                <br><br>
+                <strong>Light Bends Around Stars:</strong> Because spacetime is bent, even light follows the curves! During a solar eclipse in 1919, scientists observed stars that should have been behind the Sun - the Sun's gravity bent the starlight around it, proving Einstein was right!
+                <br><br>
+                <strong>Black Holes:</strong> Objects so massive that they bend spacetime so extremely that not even light can escape!
+            </p>
+
+            <div class="fun-fact">
+                If you fell into a black hole, from your perspective you'd fall in normally. But to someone watching from far away, you'd appear to freeze at the edge because time dilation becomes infinite there!
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        let masses = [];
+        let nextMass = 'small';
+        let animationId = null;
+
+        function setMass(type) {
+            nextMass = type;
+        }
+
+        canvas.addEventListener('click', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            const x = (e.clientX - rect.left) * (canvas.width / rect.width);
+            const y = (e.clientY - rect.top) * (canvas.height / rect.height);
+            
+            let r, c, mass, type;
+            if (nextMass === 'small') {
+                r = 5;  // Smaller size like a moon
+                c = '#4ECDC4';
+                mass = 0.5;  // Much lighter than planets
+                type = 'small';
+            } else if (nextMass === 'medium') {
+                r = 15;
+                c = '#FFD700';
+                mass = 10;
+                type = 'medium';
+            } else {
+                r = 25;
+                c = '#FF6B6B';
+                mass = 100;
+                type = 'large';
+            }
+            
+            // Calculate initial velocity for circular orbit
+            let vx = 0, vy = 0;
+            
+            if (type === 'small') {
+                // Small masses (moons) orbit the nearest medium mass (planet)
+                const medium = masses.find(m => m.type === 'medium');
+                if (medium) {
+                    const dx = x - medium.x;
+                    const dy = y - medium.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist > 0) {
+                        // Moon-like orbit: faster speed for closer orbit
+                        const speed = Math.sqrt(medium.mass * 2.0 / dist);
+                        vx = -dy / dist * speed;
+                        vy = dx / dist * speed;
+                        
+                        // Also add the planet's velocity so moon moves with planet
+                        vx += medium.vx || 0;
+                        vy += medium.vy || 0;
+                    }
+                }
+            } else if (type === 'medium') {
+                // Medium masses orbit the nearest large mass
+                const large = masses.find(m => m.type === 'large');
+                if (large) {
+                    const dx = x - large.x;
+                    const dy = y - large.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist > 0) {
+                        // Planet orbit around sun
+                        const speed = Math.sqrt(large.mass * 0.8 / dist);
+                        vx = -dy / dist * speed;
+                        vy = dx / dist * speed;
+                    }
+                }
+            }
+            
+            masses.push({ x, y, vx, vy, r, c, mass, type, trail: [] });
+            
+            // Start animation if not already running
+            if (!animationId) {
+                animate();
+            }
+        });
+
+        function animate() {
+            // Update positions based on gravitational forces
+            masses.forEach((m1) => {
+                let ax = 0, ay = 0;
+                
+                masses.forEach((m2) => {
+                    if (m1 === m2) return;
+                    
+                    // Apply gravity based on mass hierarchy
+                    let applyGravity = false;
+                    if (m1.type === 'small' && m2.type === 'medium') applyGravity = true;
+                    if (m1.type === 'medium' && m2.type === 'large') applyGravity = true;
+                    
+                    if (applyGravity) {
+                        const dx = m2.x - m1.x;
+                        const dy = m2.y - m1.y;
+                        const distSq = dx * dx + dy * dy;
+                        const dist = Math.sqrt(distSq);
+                        
+                        if (dist > m1.r + m2.r) {
+                            // Gravitational acceleration
+                            const force = m2.mass / distSq;
+                            ax += force * dx / dist;
+                            ay += force * dy / dist;
+                        }
+                    }
+                });
+                
+                // Update velocity
+                m1.vx += ax;
+                m1.vy += ay;
+                
+                // Apply very slight damping to stabilize orbits (simulates resistance)
+                m1.vx *= 0.998;
+                m1.vy *= 0.998;
+                
+                // Update position
+                m1.x += m1.vx;
+                m1.y += m1.vy;
+                
+                // Wrap around edges (for objects that escape)
+                if (m1.x < -50) m1.x = canvas.width + 50;
+                if (m1.x > canvas.width + 50) m1.x = -50;
+                if (m1.y < -50) m1.y = canvas.height + 50;
+                if (m1.y > canvas.height + 50) m1.y = -50;
+            });
+            
+            draw();
+            animationId = requestAnimationFrame(animate);
+        }
+
+        function draw() {
+            // Clear with fade effect for trails
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw spacetime grid with bending
+            ctx.strokeStyle = '#00ffff';
+            ctx.lineWidth = 0.5;
+            ctx.globalAlpha = 0.3;
+            const grid = 50;
+            
+            for (let x = 0; x <= canvas.width; x += grid) {
+                ctx.beginPath();
+                for (let y = 0; y <= canvas.height; y += 10) {
+                    let offX = 0;
+                    masses.forEach(m => {
+                        const dx = x - m.x;
+                        const dy = y - m.y;
+                        const dist = Math.sqrt(dx * dx + dy * dy) + 1;
+                        const influence = (m.r * 5) / dist;
+                        offX += dx / dist * influence;
+                    });
+                    if (y === 0) {
+                        ctx.moveTo(x + offX, y);
+                    } else {
+                        ctx.lineTo(x + offX, y);
+                    }
+                }
+                ctx.stroke();
+            }
+            
+            for (let y = 0; y <= canvas.height; y += grid) {
+                ctx.beginPath();
+                for (let x = 0; x <= canvas.width; x += 10) {
+                    let offY = 0;
+                    masses.forEach(m => {
+                        const dx = x - m.x;
+                        const dy = y - m.y;
+                        const dist = Math.sqrt(dx * dx + dy * dy) + 1;
+                        const influence = (m.r * 5) / dist;
+                        offY += dy / dist * influence;
+                    });
+                    if (x === 0) {
+                        ctx.moveTo(x, y + offY);
+                    } else {
+                        ctx.lineTo(x, y + offY);
+                    }
+                }
+                ctx.stroke();
+            }
+            
+            ctx.globalAlpha = 1;
+            
+            // Draw masses with glow
+            masses.forEach(m => {
+                // Glow effect
+                ctx.shadowColor = m.c;
+                ctx.shadowBlur = 15;
+                
+                // Gradient fill
+                const grad = ctx.createRadialGradient(m.x - m.r * 0.3, m.y - m.r * 0.3, 0, m.x, m.y, m.r);
+                grad.addColorStop(0, m.c);
+                grad.addColorStop(1, '#000');
+                ctx.fillStyle = grad;
+                ctx.beginPath();
+                ctx.arc(m.x, m.y, m.r, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Outline
+                ctx.strokeStyle = m.c;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                
+                ctx.shadowBlur = 0;
+            });
+        }
+
+        function clearAll() {
+            masses = [];
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+                animationId = null;
+            }
+            ctx.fillStyle = '#000';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+        
+        // Initial draw
+        ctx.fillStyle = '#000';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    </script>
+</body>
+</html>
