@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E=mc² - Physics For Everyone</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --red: #FF0000; --orange: #FF6B00; --yellow: #FFD700;
+            --blue: #2196F3; --purple: #9C27B0; --green: #4CAF50;
+            --dark: #0F0F0F; --gray: #3C3C3C;
+        }
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--dark);
+            color: white;
+            line-height: 1.6;
+        }
+        header {
+            background: var(--dark);
+            padding: 15px 40px;
+            border-bottom: 1px solid var(--gray);
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+        }
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--red);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+        .logo-text { color: white; }
+        .logo-text span { color: var(--red); }
+        .back-link {
+            margin-left: auto;
+            text-decoration: none;
+            color: white;
+            background: var(--gray);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+        .back-link:hover {
+            background: var(--blue);
+            transform: scale(1.05);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, var(--orange), var(--yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .explanation-section {
+            background: white;
+            color: var(--dark);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 30px 0;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+        .explanation-box {
+            background: #f0f0f0;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 5px solid var(--orange);
+        }
+        .red-text {
+            color: var(--red);
+            font-weight: 700;
+            font-size: 1.15rem;
+        }
+        .formula {
+            font-family: 'Courier New', monospace;
+            font-size: 3.5rem;
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, var(--purple), var(--blue));
+            color: white;
+            border-radius: 15px;
+            margin: 30px 0;
+            font-weight: 700;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, var(--green), #27ae60);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 30px;
+            font-size: 1.1rem;
+        }
+        .fun-fact::before {
+            content: "💡 Fun Fact: ";
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <div class="logo-icon">🔬</div>
+            <div class="logo-text">Physics<span>ForEveryone</span></div>
+        </div>
+        <a href="theory-of-relativity.html" class="back-link">← Back to Relativity</a>
+    </header>
+
+    <div class="container">
+        <h1>💥 E = mc²</h1>
+        
+        <div class="explanation-section">
+            <div class="formula">E = mc²</div>
+
+            <div class="explanation-box">
+                <strong>Simple Explanation:</strong><br><br>
+                <span class="red-text">Energy (E) equals mass (m) times the speed of light (c) squared. Mass and energy are the same thing - just in different forms!</span>
+                <br><br>
+                This equation means that a tiny bit of mass contains a HUGE amount of energy. If you could convert just 1 gram of matter (about the mass of a paperclip) completely into energy, it would release the same energy as 20,000 tons of TNT!
+            </div>
+
+            <!-- SIMULATION: TIME GROWING BOX -->
+            <div style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border-radius: 15px; padding: 30px; margin: 30px 0;">
+                <h3 style="font-family: 'Poppins', sans-serif; font-size: 1.8rem; color: var(--purple); margin-bottom: 20px; text-align: center;">
+                    🎮 Interactive: Time Is Growing - Watch Time Pass!
+                </h3>
+                <p style="text-align: center; color: #333; font-weight: 700; margin-bottom: 20px;">
+                    This box grows as time passes - showing that time is always moving forward!
+                </p>
+                
+                <div style="display: flex; justify-content: center; align-items: center; min-height: 300px;">
+                    <div id="timeBox" style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--blue), var(--purple)); border-radius: 10px; transition: all 0.5s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.5rem;"></div>
+                </div>
+
+                <div style="text-align: center; margin-top: 20px;">
+                    <div id="timeDisplay" style="font-size: 2rem; font-weight: 800; color: var(--purple); margin-bottom: 15px;">Time: 0s</div>
+                    <div id="sizeDisplay" style="font-size: 1.3rem; color: #666; margin-bottom: 20px;">Box Size: 50px × 50px</div>
+                    
+                    <button onclick="startTime()" style="background: linear-gradient(135deg, var(--green), #27ae60); color: white; border: none; padding: 15px 40px; font-size: 1.2rem; font-family: 'Poppins', sans-serif; font-weight: 700; border-radius: 50px; cursor: pointer; margin: 5px;">▶️ Start Time</button>
+                    <button onclick="stopTime()" style="background: linear-gradient(135deg, var(--red), #c92a2a); color: white; border: none; padding: 15px 40px; font-size: 1.2rem; font-family: 'Poppins', sans-serif; font-weight: 700; border-radius: 50px; cursor: pointer; margin: 5px;">⏸️ Stop</button>
+                    <button onclick="resetTime()" style="background: var(--gray); color: white; border: none; padding: 15px 40px; font-size: 1.2rem; font-family: 'Poppins', sans-serif; font-weight: 700; border-radius: 50px; cursor: pointer; margin: 5px;">🔄 Reset</button>
+                </div>
+                
+                <p style="text-align: center; margin-top: 20px; color: #666; font-size: 1.1rem;">
+                    ⏰ Time flows in one direction - always forward! The box grows as time passes, just like the universe expands!
+                </p>
+            </div>
+
+            <p style="font-size: 1.2rem; line-height: 1.8;">
+                <strong>How the Sun Shines:</strong> Inside the Sun's core, hydrogen atoms fuse together to make helium. In this process, a tiny bit of mass is "lost" and converted into energy (light and heat) according to E=mc²!
+                <br><br>
+                <strong>Why c²?:</strong> The speed of light (c) is 299,792,458 meters per second. When you square it, you get about 90,000,000,000,000,000! That's why even a tiny amount of mass equals enormous energy!
+                <br><br>
+                <strong>Nuclear Power:</strong> Nuclear power plants work because of E=mc². When uranium atoms split, a tiny amount of mass becomes energy!
+            </p>
+
+            <div class="fun-fact">
+                When you charge your phone battery, it actually gets slightly heavier! The energy you add has mass according to E=mc². But it's incredibly tiny - about 0.00000000001 grams!
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let timeInt = null;
+        let t = 0;
+
+        function startTime() {
+            if (timeInt) return;
+            timeInt = setInterval(() => {
+                t += 0.1;
+                const size = 50 + (t * 10);
+                document.getElementById('timeBox').style.width = size + 'px';
+                document.getElementById('timeBox').style.height = size + 'px';
+                document.getElementById('timeBox').textContent = t.toFixed(1) + 's';
+                document.getElementById('timeDisplay').textContent = 'Time: ' + t.toFixed(1) + 's';
+                document.getElementById('sizeDisplay').textContent = 'Box Size: ' + size.toFixed(0) + 'px × ' + size.toFixed(0) + 'px';
+            }, 100);
+        }
+
+        function stopTime() {
+            if (timeInt) { clearInterval(timeInt); timeInt = null; }
+        }
+
+        function resetTime() {
+            stopTime();
+            t = 0;
+            document.getElementById('timeBox').style.width = '50px';
+            document.getElementById('timeBox').style.height = '50px';
+            document.getElementById('timeBox').textContent = '';
+            document.getElementById('timeDisplay').textContent = 'Time: 0s';
+            document.getElementById('sizeDisplay').textContent = 'Box Size: 50px × 50px';
+        }
+    </script>
+</body>
+</html>
