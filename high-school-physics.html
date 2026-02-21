@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>High School Physics - Physics For Everyone</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: white;
+            line-height: 1.6;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px 40px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+
+        .logo-text {
+            color: white;
+        }
+
+        .logo-text span {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .back-link {
+            margin-left: auto;
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-5px);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            letter-spacing: 1px;
+        }
+
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .lesson-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: white;
+            display: block;
+        }
+
+        /* Different color themes for different topic areas */
+        .lesson-card:nth-child(1), .lesson-card:nth-child(2), .lesson-card:nth-child(3), .lesson-card:nth-child(4) {
+            /* Mechanics - Deep Blue/Teal */
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(6, 182, 212, 0.15));
+            border-color: rgba(59, 130, 246, 0.4);
+        }
+
+        .lesson-card:nth-child(1):hover, .lesson-card:nth-child(2):hover, .lesson-card:nth-child(3):hover, .lesson-card:nth-child(4):hover {
+            border-color: rgba(59, 130, 246, 0.7);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.3);
+        }
+
+        .lesson-card:nth-child(5), .lesson-card:nth-child(6), .lesson-card:nth-child(7) {
+            /* Oscillations/Rotation - Purple/Magenta */
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(236, 72, 153, 0.15));
+            border-color: rgba(168, 85, 247, 0.4);
+        }
+
+        .lesson-card:nth-child(5):hover, .lesson-card:nth-child(6):hover, .lesson-card:nth-child(7):hover {
+            border-color: rgba(168, 85, 247, 0.7);
+            box-shadow: 0 15px 40px rgba(168, 85, 247, 0.3);
+        }
+
+        .lesson-card:nth-child(8), .lesson-card:nth-child(9), .lesson-card:nth-child(10) {
+            /* Fluids/Thermo - Orange/Amber */
+            background: linear-gradient(135deg, rgba(251, 146, 60, 0.15), rgba(234, 179, 8, 0.15));
+            border-color: rgba(251, 146, 60, 0.4);
+        }
+
+        .lesson-card:nth-child(8):hover, .lesson-card:nth-child(9):hover, .lesson-card:nth-child(10):hover {
+            border-color: rgba(251, 146, 60, 0.7);
+            box-shadow: 0 15px 40px rgba(251, 146, 60, 0.3);
+        }
+
+        .lesson-card:nth-child(11), .lesson-card:nth-child(12), .lesson-card:nth-child(13), .lesson-card:nth-child(14) {
+            /* Electricity - Electric Blue/Cyan */
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.15), rgba(6, 182, 212, 0.15));
+            border-color: rgba(14, 165, 233, 0.4);
+        }
+
+        .lesson-card:nth-child(11):hover, .lesson-card:nth-child(12):hover, .lesson-card:nth-child(13):hover, .lesson-card:nth-child(14):hover {
+            border-color: rgba(14, 165, 233, 0.7);
+            box-shadow: 0 15px 40px rgba(14, 165, 233, 0.3);
+        }
+
+        .lesson-card:nth-child(15), .lesson-card:nth-child(16) {
+            /* Magnetism - Deep Red/Pink */
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(236, 72, 153, 0.15));
+            border-color: rgba(239, 68, 68, 0.4);
+        }
+
+        .lesson-card:nth-child(15):hover, .lesson-card:nth-child(16):hover {
+            border-color: rgba(239, 68, 68, 0.7);
+            box-shadow: 0 15px 40px rgba(239, 68, 68, 0.3);
+        }
+
+        .lesson-card:nth-child(17), .lesson-card:nth-child(18), .lesson-card:nth-child(19), .lesson-card:nth-child(20) {
+            /* Waves/Light - Emerald/Green */
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(52, 211, 153, 0.15));
+            border-color: rgba(16, 185, 129, 0.4);
+        }
+
+        .lesson-card:nth-child(17):hover, .lesson-card:nth-child(18):hover, .lesson-card:nth-child(19):hover, .lesson-card:nth-child(20):hover {
+            border-color: rgba(16, 185, 129, 0.7);
+            box-shadow: 0 15px 40px rgba(16, 185, 129, 0.3);
+        }
+
+        .lesson-card:nth-child(21), .lesson-card:nth-child(22) {
+            /* Modern Physics - Gold/Yellow */
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(251, 191, 36, 0.15));
+            border-color: rgba(245, 158, 11, 0.4);
+        }
+
+        .lesson-card:nth-child(21):hover, .lesson-card:nth-child(22):hover {
+            border-color: rgba(245, 158, 11, 0.7);
+            box-shadow: 0 15px 40px rgba(245, 158, 11, 0.3);
+        }
+
+        .lesson-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+            border-color: rgba(102, 126, 234, 0.6);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+        }
+
+        .lesson-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .lesson-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .lesson-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .coming-soon {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .coming-soon:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        .coming-soon-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .lessons-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <div class="logo-icon">🎓</div>
+            <div class="logo-text">Physics<span>ForEveryone</span></div>
+        </div>
+        <a href="index.html" class="back-link">← Back to Main Page</a>
+    </header>
+
+    <div class="container">
+        <div class="hero">
+            <h1>🎓 High School Physics</h1>
+            <p>Advanced Topics • Calculus-Based • College Prep Level</p>
+        </div>
+
+        <!-- Welcome Message -->
+        <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(168, 85, 247, 0.2)); border: 3px solid rgba(167, 139, 250, 0.5); border-radius: 20px; padding: 40px; margin-bottom: 40px; line-height: 1.9; font-size: 1.1rem; box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);">
+            <h2 style="font-family: 'Poppins', sans-serif; font-size: 2rem; margin-bottom: 25px; background: linear-gradient(135deg, #a78bfa, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                📖 Before You Begin Your Physics Journey...
+            </h2>
+            
+            <div style="background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 15px; margin-bottom: 20px; border-left: 5px solid #3b82f6;">
+                <p style="margin: 0;">
+                    <span style="font-size: 1.5rem; margin-right: 10px;">🧱</span>
+                    <strong>The Foundation Matters:</strong> Sure, some early concepts might seem a bit basic at first—but here's the secret: they're your <em>superpower building blocks</em>! Every physics genius started exactly where you are now. These "simple" ideas unlock the mind-blowing stuff later. Trust the process! 🚀
+                </p>
+            </div>
+            
+            <div style="background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 15px; margin-bottom: 20px; border-left: 5px solid #8b5cf6;">
+                <p style="margin: 0;">
+                    <span style="font-size: 1.5rem; margin-right: 10px;">🗺️</span>
+                    <strong>Your Path, Your Rules:</strong> We've arranged these lessons in an order that flows naturally—each one building on the last. Following the sequence? Great! Already know some stuff and want to jump ahead? Also great! Feel stuck and need to review? Perfect! This is <em>your</em> adventure. Choose your own path! 🎯
+                </p>
+            </div>
+            
+            <div style="background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 15px; margin-bottom: 20px; border-left: 5px solid #10b981;">
+                <p style="margin: 0;">
+                    <span style="font-size: 1.5rem; margin-right: 10px;">⏰</span>
+                    <strong>Rome Wasn't Built in a Day:</strong> Physics is like learning a musical instrument or a new language—it takes time, practice, and patience. Some concepts will click instantly (💡 *aha!*), others might take days or weeks to really sink in. That's not just normal, that's <em>how it works for everyone</em>—even Einstein! Don't rush. Understanding beats speed every single time. 🧠
+                </p>
+            </div>
+            
+            <div style="padding: 25px; background: linear-gradient(135deg, rgba(167, 139, 250, 0.3), rgba(236, 72, 153, 0.3)); border-radius: 15px; border: 2px solid rgba(167, 139, 250, 0.6); box-shadow: 0 5px 20px rgba(167, 139, 250, 0.4);">
+                <p style="margin: 0; font-size: 1.15rem;">
+                    <span style="font-size: 2rem; margin-right: 10px;">🌟</span>
+                    <strong style="font-size: 1.3rem; color: #fbbf24;">Our Promise:</strong><br>
+                    Stick with this, put in the effort, and something amazing happens—<strong>the universe starts making sense</strong>. You'll see physics everywhere: in sports, music, technology, nature, even cooking! You'll understand things that mystify most people. You'll solve problems others can't. You'll think in ways that change how you see <em>everything</em>. That's the real gift of physics—and it's waiting for you. 
+                    <br><br>
+                    <strong style="color: #a78bfa; font-size: 1.2rem;">Now go explore, experiment, learn, and most importantly—have an absolute blast! 🎉🚀✨</strong>
+                </p>
+            </div>
+        </div>
+
+        <div class="lessons-grid">
+            <!-- Lesson 1 -->
+            <a href="#" class="lesson-card coming-soon">
+                <span class="lesson-icon">🚗</span>
+                <span class="lesson-number">LESSON 1</span>
+                <h3 class="lesson-title">Motion</h3>
+                <span class="coming-soon-badge">Coming Soon</span>
+            </a>
+
+            <!-- Lesson 2 -->
+            <a href="#" class="lesson-card coming-soon">
+                <span class="lesson-icon">⚡</span>
+                <span class="lesson-number">LESSON 2</span>
+                <h3 class="lesson-title">Forces</h3>
+                <span class="coming-soon-badge">Coming Soon</span>
+            </a>
+
+            <!-- Lesson 3 -->
+            <a href="#" class="lesson-card coming-soon">
+                <span class="lesson-icon">💥</span>
+                <span class="lesson-number">LESSON 3</span>
+                <h3 class="lesson-title">Momentum and Impulse</h3>
+                <span class="coming-soon-badge">Coming Soon</span>
+            </a>
+
+            <!-- Lesson 4 -->
+            <a href="#" class="lesson-card coming-soon">
+                <span class="lesson-icon">⚙️</span>
+                <span class="lesson-number">LESSON 4</span>
+                <h3 class="lesson-title">Energy and Work</h3>
+                <span class="coming-soon-badge">Coming Soon</span>
+            </a>
+
+            <!-- Lesson 5 -->
+            <a href="#" class="lesson-card coming-soon">
+                <span class="lesson-icon">〰️</span>
+                <span class="lesson-number">LESSON 5</span>
+                <h3 class="lesson-title">Oscillations</h3>
+                <span class="coming-soon-badge">Coming Soon</span>
+            </a>
+
+            <!-- Lesson 6 -->
+            <a href="#" class="lesson-card coming-soon">
+                <span class="lesson-icon">🔄</span>
+                <span class="lesson-number">LESSON 6</span>
+                <h3 class="lesson-title">Circular Motion</h3>
+                <span class="coming-soon-badge">Coming Soon</span>
+            </a>
+
+            <!-- Lesson 7 -->
+            <a href="#" class="lesson-card coming-soon">
+                <span class="lesson-icon">🌀</span>
+                <span class="lesson-number">LESSON 7</span>
+                <h3 class="lesson-title">Rotational Motion</h3>
+                <span class="coming-soon-badge">Coming Soon</span>
+            </a>
+
+            <!-- Lesson 8 -->
+            <a href="#" class="lesson-card coming-soon">
+                <span class="lesson-icon">💧</span>
+                <span class="lesson-number">LESSON 8</span>
+                <h3 class="lesson-title">Liquids/Fluids</h3>
+                <span class="coming-soon-badge">Coming Soon</span>
+            </a>
+
+            <!-- Lesson 9 -->
+            <a href="#" class="lesson-card coming-soon">
+                <span class="lesson-icon">🔥</span>
+                <span class="lesson-number">LESSON 9</span>
+                <h3 class="lesson-title">First Law of Thermodynamics</h3>
+                <span class="coming-soon-badge">Coming Soon</span>
+            </a>
+
+            <!-- Lesson 10 -->
+            <a href="#" class="lesson-card coming-soon">
+                <span class="lesson-icon">♨️</span>
+                <span class="lesson-number">LESSON 10</span>
+                <h3 class="lesson-title">Second Law of Thermodynamics</h3>
+                <span class="coming-soon-badge">Coming Soon</span>
+            </a>
+
+            <!-- Lesson 11 -->
+            <a href="#" class="lesson-card coming-soon">
+                <span class="lesson-icon">⚡</span>
+                <span class="lesson-number">LESSON 11</span>
+                <h3 class="lesson-title">Electric Force</h3>
+                <span class="coming-soon-badge">Coming Soon</span>
+            </a>
+
+            <!-- Lesson 12 -->
+            <a href="#" class="lesson-card coming-soon">
+                <span class="lesson-icon">🔌</span>
+                <span class="lesson-number">LESSON 12</span>
+                <h3 class="lesson-title">Electric Fields</h3>
+                <span class="coming-soon-badge">Coming Soon</span>
+            </a>
+
+            <!-- Lesson 13 -->
+            <a href="#" class="lesson-card coming-soon">
+                <span class="lesson-icon">🔋</span>
+                <span class="lesson-number">LESSON 13</span>
+                <h3 class="lesson-title">Electric Potential Energy and Electric Potential</h3>
+                <span class="coming-soon-badge">Coming Soon</span>
+            </a>
+
+            <!-- Lesson 14 -->
+            <a href="#" class="lesson-card coming-soon">
+                <span class="lesson-icon">💡</span>
+                <span class="lesson-number">LESSON 14</span>
+                <h3 class="lesson-title">Circuits</h3>
+                <span class="coming-soon-badge">Coming Soon</span>
+            </a>
+
+            <!-- Lesson 15 -->
+            <a href="#" class="lesson-card coming-soon">
+                <span class="lesson-icon">🧲</span>
+                <span class="lesson-number">LESSON 15</span>
+                <h3 class="lesson-title">Magnetism</h3>
+                <span class="coming-soon-badge">Coming Soon</span>
+            </a>
+
+            <!-- Lesson 16 -->
+            <a href="#" class="lesson-card coming-soon">
+                <span class="lesson-icon">🔁</span>
+                <span class="lesson-number">LESSON 16</span>
+                <h3 class="lesson-title">Induction</h3>
+                <span class="coming-soon-badge">Coming Soon</span>
+            </a>
+
+            <!-- Lesson 17 -->
+            <a href="#" class="lesson-card coming-soon">
+                <span class="lesson-icon">🔊</span>
+                <span class="lesson-number">LESSON 17</span>
+                <h3 class="lesson-title">Mechanical Waves with Sound</h3>
+                <span class="coming-soon-badge">Coming Soon</span>
+            </a>
+
+            <!-- Lesson 18 -->
+            <a href="#" class="lesson-card coming-soon">
+                <span class="lesson-icon">📡</span>
+                <span class="lesson-number">LESSON 18</span>
+                <h3 class="lesson-title">Electromagnetic Waves</h3>
+                <span class="coming-soon-badge">Coming Soon</span>
+            </a>
+
+            <!-- Lesson 19 -->
+            <a href="#" class="lesson-card coming-soon">
+                <span class="lesson-icon">🪞</span>
+                <span class="lesson-number">LESSON 19</span>
+                <h3 class="lesson-title">Reflection and How Mirrors Work</h3>
+                <span class="coming-soon-badge">Coming Soon</span>
+            </a>
+
+            <!-- Lesson 20 -->
+            <a href="#" class="lesson-card coming-soon">
+                <span class="lesson-icon">🔍</span>
+                <span class="lesson-number">LESSON 20</span>
+                <h3 class="lesson-title">Refraction and Lenses</h3>
+                <span class="coming-soon-badge">Coming Soon</span>
+            </a>
+
+            <!-- Lesson 21 -->
+            <a href="#" class="lesson-card coming-soon">
+                <span class="lesson-icon">🌌</span>
+                <span class="lesson-number">LESSON 21</span>
+                <h3 class="lesson-title">Relativity and Quantum Behavior</h3>
+                <span class="coming-soon-badge">Coming Soon</span>
+            </a>
+
+            <!-- Lesson 22 -->
+            <a href="#" class="lesson-card coming-soon">
+                <span class="lesson-icon">☢️</span>
+                <span class="lesson-number">LESSON 22</span>
+                <h3 class="lesson-title">Nuclear Physics</h3>
+                <span class="coming-soon-badge">Coming Soon</span>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
